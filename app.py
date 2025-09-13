@@ -3,9 +3,8 @@ import requests
 
 app = Flask(__name__)
 
-# 🔐 ใส่ Channel Access Token จริงจาก LINE Developers Console ตรงนี้
-# ตัวอย่าง: "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
-CHANNEL_ACCESS_TOKEN = "YOUR_ACTUAL_CHANNEL_ACCESS_TOKEN_HERE"
+# ใส่ Channel Access Token จาก LINE Developers Console
+CHANNEL_ACCESS_TOKEN = "YOUR_CHANNEL_ACCESS_TOKEN"
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -21,7 +20,7 @@ def webhook():
     return jsonify({"status": "ok"})
 
 def reply_message(text, reply_token):
-    url = "https://api.line.me/v2/bot/message/reply"  # ✅ ลบช่องว่างท้ายแล้ว!
+    url = "https://api.line.me/v2/bot/message/reply"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {CHANNEL_ACCESS_TOKEN}"
